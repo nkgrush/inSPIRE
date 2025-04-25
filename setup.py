@@ -99,6 +99,8 @@ setup(
 		'wrapt==1.14.1',
 		'xgboost==2.0.2',
         'xlsxwriter==3.1.9',
+        'ibaqpy @ git+https://github.com/nkgrush/ibaqpy-force-requirements.git@master#egg=ibaqpy',
+        'directlfq==0.3.1',
     ],
     project_urls={
         'Homepage': 'https://github.com/QuantSysBio/inSPIRE',

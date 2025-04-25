@@ -26,6 +26,8 @@ from inspire.prepare import prepare_for_spectral_prediction, prepare_for_mhcpan
 from inspire.feature_creation import create_features
 from inspire.feature_selection import select_features
 from inspire.quant.execute import quantify_identifications
+from inspire.quant.protein_level import quantify_protein_lfq
+from inspire.quant.protein_level import quantify_protein_ibaq
 from inspire.quant.normalise import normalise_intensities
 from inspire.quant.de_analysis import de_analysis
 from inspire.quant.report_template import create_quant_report
@@ -63,6 +65,9 @@ PIPELINE_OPTIONS = [
     'rescore',
     'spectralAngle',
     'spectralPrepare',
+    'quantifyProtein',
+    'quantifyProteinIbaq',
+    'quantifyProteinLfq',
 ]
 
 def get_arguments():
@@ -284,6 +289,23 @@ def run_inspire(pipeline=None, config_file=None):
             ENDC_TEXT
         )
         plot_isobars(config)
+
+    if pipeline in ('quantifyProtein', 'quantifyProteinLfq'):
+        print(
+            OKGREEN_TEXT +
+            'Running protein quantification via directlfq...' +
+            ENDC_TEXT
+        )
+        quantify_protein_lfq(config)
+
+    if pipeline in ('quantifyProtein', 'quantifyProteinIbaq'):
+        print(
+            OKGREEN_TEXT +
+            'Running protein quantification via ibaqpy...' +
+            ENDC_TEXT
+        )
+        quantify_protein_ibaq(config)
+
 
     print(
         OKGREEN_TEXT +

@@ -82,6 +82,14 @@ ALL_CONFIG_KEYS = [
     'useIrtDelta',
     'useMinimalFeatures',
     'technicalReplicates',
+    'ibaqOrganism',
+    'ibaqPloidy',
+    'ibaqMinAA',
+    'ibaqMaxAA',
+    'ibaqCpcCellular',
+    'ibaqTpa',
+    'ibaqRuler',
+    'ibaqNormalize'
 ]
 
 class Config:
@@ -206,6 +214,17 @@ class Config:
         )
         self.skyline_idp_cut_off = config_dict.get('skylineIdpCutOff', 0.5)
         self.skyline_bg_ratio_cut_off = config_dict.get('skylineRatioCutOff', 0.8)
+
+        # Protein level quantification (ibaq)
+        self.ibaq_organism = config_dict.get('ibaqOrganism', None)
+        self.ibaq_ploidy = config_dict.get('ibaqPloidy', None)
+
+        self.ibaq_min_aa = config_dict.get('ibaqMinAA', 7)
+        self.ibaq_max_aa = config_dict.get('ibaqMaxAA', 30)
+        self.ibaq_cpc_cellular = config_dict.get('ibaqCpcCellular', 200)
+        self.ibaq_tpa = config_dict.get('ibaqTpa', True)
+        self.ibaq_ruler = config_dict.get('ibaqRuler', True)
+        self.ibaq_normalize = config_dict.get('ibaqNormalize', True)
 
         # Protein Inference
         self.decoy_protein_flag = config_dict.get('proteinDecoyKey', 'rev_')
